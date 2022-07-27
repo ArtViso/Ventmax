@@ -1,17 +1,3 @@
-/**
-*   Gulp with TailwindCSS - An CSS Utility framework                                
-*   Author : Manjunath G                                              
-*   URL : manjumjn.com | lazymozek.com
-*   Twitter : twitter.com/manju_mjn                                    
-**/
-
-/*
-  Usage:
-  1. npm install //To install all dev dependencies of package
-  2. npm run dev //To start development and server for live preview
-  3. npm run prod //To generate minifed files for live server
-*/
-
 const { src, dest, task, watch, series, parallel } = require('gulp');
 const del = require('del'); //For Cleaning build/dist for fresh export
 const options = require("./config"); //paths and other options from config.js
@@ -28,7 +14,7 @@ const purgecss = require('gulp-purgecss');// Remove Unused CSS from Styles
 //Note : Webp still not supported in major browsers including forefox
 //const webp = require('gulp-webp'); //For converting images to WebP format
 //const replace = require('gulp-replace'); //For Replacing img formats to webp in html
-const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P 
+const logSymbols = require('log-symbols'); //For Symbolic Console logs :) :P
 
 //Load Previews on Browser on dev
 function livePreview(done){
@@ -39,7 +25,7 @@ function livePreview(done){
     port: options.config.port || 5000
   });
   done();
-} 
+}
 
 // Triggers Browser reload
 function previewReload(done){
@@ -51,10 +37,10 @@ function previewReload(done){
 //Development Tasks
 function devHTML(){
   return src(`${options.paths.src.base}/**/*.html`).pipe(dest(options.paths.dist.base));
-} 
+}
 
 function devStyles(){
-  const tailwindcss = require('tailwindcss'); 
+  const tailwindcss = require('tailwindcss');
   return src(`${options.paths.src.css}/**/*.scss`).pipe(sass().on('error', sass.logError))
     .pipe(dest(options.paths.src.css))
     .pipe(postcss([
